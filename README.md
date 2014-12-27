@@ -1,8 +1,6 @@
 # Ember XMPP Instant Message Client
 
-This README outlines the details of collaborating on this Ember application.
-
-A short introduction of this app could easily go here.
+This Ember-CLI application implements a XMPP Instant Message Client. This application is created to demo the use of XMPP and Ember to create a highly scalable real time application based on XMPP technology.
 
 ## Prerequisites
 
@@ -10,27 +8,35 @@ You will need the following things properly installed on your computer.
 
 * [Git](http://git-scm.com/)
 * [Node.js](http://nodejs.org/) (with NPM) and [Bower](http://bower.io/)
+* An XMPP BOSH Server like [OpenFire](https://www.igniterealtime.org/projects/openfire/)
 
 ## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone https://github.com/rjaviervega/ember-xmpp-im` this repository
 * change into the new directory
 * `npm install`
 * `bower install`
+
+
+## Configuration
+
+#### XMPP Server
+* Download, install and setup Openfire server localy
+* Create sample users using JID format: user@domain.com
+
+#### Ember App 
+* Edit default settings `xmppConfig` on file `config/environment.js`
 
 ## Running / Development
 
 * `ember server`
 * Visit your app at http://localhost:4200.
+* Login with your XMPP user/pass
+* Subscribe to users to create your roster
+* Click on a user to start chatting
 
-### Code Generators
+## Screenshots
 
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
 
 ### Building
 
@@ -43,9 +49,4 @@ Specify what it takes to deploy your app.
 
 ## Further Reading / Useful Links
 
-* ember: http://emberjs.com/
-* ember-cli: http://www.ember-cli.com/
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
 
