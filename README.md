@@ -24,7 +24,7 @@ You will need the following things properly installed on your computer.
 * Download, install and setup Openfire server localy
 * Create sample users using JID format: user@domain.com
 
-#### Ember App 
+#### Ember App
 * Edit default settings `xmppConfig` on file `config/environment.js`
 
 ## Running / Development
@@ -37,18 +37,14 @@ You will need the following things properly installed on your computer.
 
 ## Screenshots
 
-**Login Screen**
-
 <img src="https://raw.githubusercontent.com/rjaviervega/ember-xmpp-im/master/screenshots/Screen%20Shot%202014-12-26%20at%208.20.15%20PM.png" width="600"/>
 
-**Logged Screen with Roster**
 <img src="https://raw.githubusercontent.com/rjaviervega/ember-xmpp-im/master/screenshots/Screen%20Shot%202014-12-26%20at%208.20.25%20PM.png" width="600">
 
-**Chat Screen**
 <img src="https://raw.githubusercontent.com/rjaviervega/ember-xmpp-im/master/screenshots/Screen%20Shot%202014-12-26%20at%208.21.54%20PM.png" width="600">
 
-## Lisence 
+## Lisence
 
-GPL v3.0
+This software is open source under GPL v3.0
 
 
