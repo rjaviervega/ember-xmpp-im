@@ -1,0 +1,57 @@
+
+<div class="user-roster">
+    {{#if isConnected}}
+    <ul class="list-group">
+        {{#each dsRosterArray}}
+            {{partial 'components/xmpp-im-roster'}}
+        {{/each}}
+    </ul>
+    {{/if}}
+</div>
+
+
+{{#if isConnected}}
+
+<div {{bind-attr class=":chat-window showChatWindow:show:hide"}}>
+    <div class="container-fluid full-height">
+        <div class="row full-height">
+            <!-- Chat Box -->
+            <div class="col-sm-12 full-height">
+                <div class="well full-height">
+
+                    <div {{bind-attr class=":alert isLoggedUser:alert-danger:alert-info :clearfix :padding-small"}}>
+                        {{#unless isLoggedUser}}
+                            <span class="pull-left">Chat with {{activeRecord.title}}</span>
+                        {{else}}
+                            <span class="pull-left">Messaging yourself is not supported.</span>
+                        {{/unless}}
+                        <i class="glyphicon glyphicon-remove-circle pull-right" {{action "closeChatWindow"}} ></i>
+                    </div>
+
+                    <div class="clearfix full-height">
+                    {{#unless isLoggedUser}}
+                        {{#if activeRecord.title}}
+                            {{!-- Conversation with {{activeRecord.title}} --}}
+                            <div class="well chat-text-box" style="background-color: white;">
+                                {{#each activeThread}}
+                                    <div {{bind-attr class="alignment :alert isSentMessage:alert-success:alert-info :message-line"}}>
+                                        <span>{{body}}</span>
+                                        <br/>
+                                        {{!-- <small>({{fromUsername}})</small> --}}
+                                    </div>
+                                {{/each}}
+                            </div>
+                            {{input type="text" value=messageText class="pull-left" size="38" id="chatInput" insert-newline='sendChat'}}
+                            <button class="btn btn-success pull-right btn-sm" {{action "sendChat" target="view"}}>Send</button><br />
+                        {{else}}
+                            <p>Select a user from your roster.</p>
+                        {{/if}}
+                    {{/unless}}
+                    </div>
+                </div>
+            </div>
+            <!-- Chat Box -->
+        </div>
+    </div>
+</div>
+{{/if}}

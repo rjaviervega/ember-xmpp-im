@@ -1,0 +1,88 @@
+.section {
+	border: 1px solid blue;
+	padding: 10px;
+	clear: both;
+}
+
+.online {
+    color: green;
+}
+
+.offline {
+    color: red;
+}
+
+.from {
+    clear: both;
+    float: right;
+    /*width: 100%;*/
+}
+
+.to {
+    clear: both;
+    float: left;
+    /*width: 100%;*/
+}
+
+.user-roster {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    border-left: 1px solid silver;
+    background-color: #efefef;
+    overflow-y: auto;
+}
+
+.list-group li {
+    cursor: pointer !important;
+}
+
+.chat-window {
+    width: 400px;
+    height: 340px;
+    position: fixed;
+    bottom: 20px;
+    right: 200px;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.chat-text-box {
+    overflow-y: scroll;
+    height: calc(100% - 90px);
+    background-image: none !important;
+}
+
+.active .active-icon {
+    color: white;
+}
+
+.active .active-user-icon {
+    color: lime;
+}
+
+.roster-status {
+    color: gray;
+}
+
+.active .roster-status {
+    color: #eeeeee;
+}
+
+.margin-right-small {
+    margin-right: 5px;
+}
+
+.padding-small {
+    padding: 5px;
+}
+
+.message-line {
+    display: inline-block;
+    margin-bottom: 2px;
+    padding: 2px 5px 2px 5px;
+}
