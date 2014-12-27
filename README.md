@@ -37,16 +37,18 @@ You will need the following things properly installed on your computer.
 
 ## Screenshots
 
+**Login Screen**
 
-### Building
+<img src="https://raw.githubusercontent.com/rjaviervega/ember-xmpp-im/master/screenshots/Screen%20Shot%202014-12-26%20at%208.20.15%20PM.png" width="600"/>
 
-* `ember build` (development)
-* `ember build --environment production` (production)
+**Logged Screen with Roster**
+<img src="https://raw.githubusercontent.com/rjaviervega/ember-xmpp-im/master/screenshots/Screen%20Shot%202014-12-26%20at%208.20.25%20PM.png" width="600">
 
-### Deploying
+**Chat Screen**
+<img src="https://raw.githubusercontent.com/rjaviervega/ember-xmpp-im/master/screenshots/Screen%20Shot%202014-12-26%20at%208.21.54%20PM.png" width="600">
 
-Specify what it takes to deploy your app.
+## Lisence 
 
-## Further Reading / Useful Links
+GPL v3.0
 
 
