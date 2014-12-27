@@ -1,6 +1,6 @@
 # Ember XMPP Instant Message Client
 
-This Ember-CLI application implements a XMPP Instant Message Client. This application is created to demo the use of XMPP and Ember to create a highly scalable real time application based on XMPP technology.
+This Ember-CLI application implements a XMPP Instant Message Client. This application is created to demo the use of XMPP and Ember to create a highly scalable real time application based on XMPP technology. You can use this application as a boiler plate to add an instant messaging component to any ember or web application.
 
 ## Prerequisites
 
