@@ -26,9 +26,9 @@ module.exports = function(environment) {
             // URL of Bosh server
             xmmpBoshServer: 'http://localhost:7070/http-bind/',
 
-            xmppDefaultUser: 'javier@javiermac.local',
+            xmppDefaultUser: '',
 
-            xmppDefaultPass: 'javier',
+            xmppDefaultPass: '',
 
             debugginOn: false
         }
