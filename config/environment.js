@@ -30,7 +30,7 @@ module.exports = function(environment) {
 
             xmppDefaultPass: '',
 
-            debugginOn: false
+            debugginOn: true
         }
 
 

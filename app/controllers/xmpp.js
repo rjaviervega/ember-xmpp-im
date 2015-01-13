@@ -26,6 +26,9 @@ export default Ember.Controller.extend({
 	// XMPP Connection flag
 	isConnected: false,
 
+	// Connection to xmpp error
+	connectionError: null,
+
 	//
 	// onConnect function gets called by Strophe.js every time
 	// the connection status changes.
@@ -41,10 +44,21 @@ export default Ember.Controller.extend({
 	    	if (this.get('debugginOn')) {
 				console.log('Strophe is connecting.');
 			}
+	    } else if (status === Strophe.Status.ERROR) {
+	    	if (this.get('debugginOn')) {
+				console.log('Strophe failed to authenticate.');
+			}
+			this.set('connectionError', 'Connection error.');
+	    } else if (status === Strophe.Status.AUTHFAIL) {
+	    	if (this.get('debugginOn')) {
+				console.log('Strophe failed to authenticate.');
+			}
+			this.set('connectionError', 'Authentication to xmpp server failed.');
 	    } else if (status === Strophe.Status.CONNFAIL) {
 	    	if (this.get('debugginOn')) {
 				console.log('Strophe failed to connect.');
 			}
+			this.set('connectionError', 'Connection to xmpp server failed.');
 	    } else if (status === Strophe.Status.DISCONNECTING) {
 	    	if (this.get('debugginOn')) {
 				console.log('Strophe is disconnecting.');
@@ -53,11 +67,14 @@ export default Ember.Controller.extend({
 	    	if (this.get('debugginOn')) {
 				console.log('Strophe is disconnected.');
 			}
+			this.set('connectionError', '');
 	    } else if (status === Strophe.Status.CONNECTED) {
 
 	    	if (this.get('debugginOn')) {
 	    		console.log('Strophe is connected.');
 	    	}
+
+	    	this.set('connectionError', '');
 
 	    	connection = this.get('connection');
 
@@ -219,6 +236,18 @@ export default Ember.Controller.extend({
 		connect: function() {
 			var connection;
 
+			this.set('connectionError', '');
+
+			if (Ember.isEmpty(this.get('jid')) || Ember.isEmpty(this.get('password'))) {
+				this.set('connectionError', 'User Jid or password cannot be empty.');
+				return;
+			}
+
+			if (this.get('jid').indexOf('@') < 0) {
+				this.set('connectionError', 'User Jid needs to include a full domain.');
+				return;
+			}
+
 			// Initiate Strophe XMPP connection
 			//
 			this.set('connection', new Strophe.Connection(this.get('xmmpBoshServer')));
@@ -269,9 +298,10 @@ export default Ember.Controller.extend({
 		disconnect: function() {
 			var connection = this.get('connection');
 
+			this.set('connectionError', '');
+
 			if (connection) {
 				connection.disconnect();
-				connection.reset();
 			}
 
 			connection = null;
