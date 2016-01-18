@@ -35,6 +35,12 @@ You will need the following things properly installed on your computer.
 * Subscribe to users to create your roster
 * Click on a user to start chatting
 
+## Screencast 
+Watch this presentation on the Heroku SF Meet up about using EmberJS and XMPP.
+<a href="https://www.youtube.com/watch?v=0Y-JhA3joZ4">
+<img src="https://img.youtube.com/vi/0Y-JhA3joZ4/0.jpg" width="600" />
+</a>
+
 ## Screenshots
 
 <img src="https://raw.githubusercontent.com/rjaviervega/ember-xmpp-im/master/screenshots/Screen%20Shot%202014-12-26%20at%208.20.15%20PM.png" width="600"/>
