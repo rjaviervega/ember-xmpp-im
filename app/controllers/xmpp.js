@@ -3,6 +3,8 @@ import environment from '../config/environment';
 
 export default Ember.Controller.extend({
 
+  	xmpp: Ember.inject.service(),
+
 	// BOSH server URL
 	xmmpBoshServer: environment.xmppConfig.xmmpBoshServer,
 
@@ -152,7 +154,6 @@ export default Ember.Controller.extend({
 		// which is the first part of the user JID.
 		//
 		if (messageJSONOutter.presence) {
-
 			// Obtain presence id
 			// We use bare jid to store presence
 			bareJid = messageJSONOutter.presence._from.split('/')[0];
@@ -170,7 +171,7 @@ export default Ember.Controller.extend({
 
 			p._type = messageJSONOutter.presence._type;
 
-			record = this.get('store').getById('presence', bareJid);
+			record = this.get('store').query('presence', {id: bareJid} );
 
 			if (record) {
 				record.set('status', p.status);
@@ -185,7 +186,6 @@ export default Ember.Controller.extend({
 		// Chats Messages
 		//
 		if (messageJSONOutter.message) {
-
 			bareJid = messageJSONOutter.message._from.split('/')[0];
 			to = messageJSONOutter.message._to.split('/')[0];
 			body = messageJSONOutter.message.body;
@@ -198,7 +198,26 @@ export default Ember.Controller.extend({
 				msg.alignment = 'to';
 			}
 
-			record = this.get('store').getById('presence', bareJid);
+			record = this.get('store').query('presence', {id: bareJid});
+			var m, m2;
+			m = this.get('xmpp.messages').findBy('id', bareJid);
+
+			if (m) {
+				if (Array.isArray(m.messages)) {
+					m.messages.pushObject(msg);
+				} else {
+					m.messages = [];
+					m.messages.pushObject(msg);
+				}
+			} else {
+				this.get('xmpp.messages').pushObject({
+					id: bareJid,
+					messages: []
+				});
+				m2 = this.get('xmpp.messages').findBy('id', bareJid);
+				m2.messages.pushObject(msg);
+			}
+
 
 			if (record) {
 				if (!record.get('messages')) {
@@ -227,7 +246,7 @@ export default Ember.Controller.extend({
 			if (!_this.get('store').hasRecordForId('presence', item.id)) {
 				_this.get('store').createRecord('presence', item);
 			} else {
-				_this.get('store').getById('presence', item.id).set('_subscription', item._subscription);
+				_this.get('store').query('presence',{id: item.id}).set('_subscription', item._subscription);
 			}
 		});
 	},

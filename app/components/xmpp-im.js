@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
+    xmpp: Ember.inject.service(),
+
     // Logged user's jabber id
     jid: null,
 
@@ -41,8 +43,10 @@ export default Ember.Component.extend({
 
         if (msgObject.from === this.get('jid')) {
             msgObject.alignment = 'from';
+            msgObject.alignmentFrom = true;
         } else {
             msgObject.alignment = 'to';
+            msgObject.alignmentTo = true;
         }
         return this.get('store').createRecord('message', msgObject);
     },
@@ -55,7 +59,7 @@ export default Ember.Component.extend({
                 e.animate({scrollTop: e[0].scrollHeight}, 200);
             }
         }, 100);
-    }.observes('activeThread.@each'),
+    }.observes('activeThread.messages.@each'),
 
     onUpdateUndefinedMessages: function() {
         if (!this.get('activeThread')) {
@@ -76,8 +80,19 @@ export default Ember.Component.extend({
                 this.get('activeRecord').set('active', false);
             }
             record.set('badge', 0);
+            var m, m2;
+            m = this.get('xmpp.messages').findBy('id', record.id);
+
+            if (!m) {
+                this.get('xmpp.messages').pushObject({
+                    id: record.id,
+                    messages: []
+                });
+                m = this.get('xmpp.messages').findBy('id', record.id);
+            }
+
             this.set('activeRecord', record);
-            this.set('activeThread', record.get('messages'));
+            this.set('activeThread', m);
 
             if (this.get('activeRecord')) {
                 record.set('active', true);
@@ -106,10 +121,15 @@ export default Ember.Component.extend({
             connection.send(reply.tree());
 
             if (!activeThread) {
-                activeThread = Ember.A([]);
+                this.get('xmpp.messages').pushObject({
+                    id: to,
+                    messages: []
+                });
+                activeThread = this.get('xmpp.messages').findBy('id', to);
+                this.set('activeThread', activeThread);
             }
 
-            activeThread.pushObject(this.newMessageObject({body: message}));
+            Ember.get(activeThread, 'messages').pushObject(this.newMessageObject({body: message}));
 
             this.set('activeThread', activeThread);
 

@@ -1,0 +1,43 @@
+<li {{bind-attr class=":list-group-item item.active:active"}} {{action "selectUser" item}}>
+    <i {{bind-attr class=":glyphicon :glyphicon-user :active-user-icon item.online:online:offline"}} aria-hidden="true"></i>
+
+    {{item.username}}
+
+    {{#if isLoggedUser}}(you){{/if}}
+
+    {{#unless isLoggedUser}}
+        <a class="small" {{action "removeUserFromRoster" item bubbles=false}}><i class="glyphicon active-icon glyphicon-remove-circle pull-right"></i></a>
+    {{/unless}}
+
+    <br/>
+    <small class="roster-status">
+        {{item.status}}
+    </small>
+
+    {{#if isLoggedUser}}
+        {{#if item.editingStatus}}
+            <i class="glyphicon active-icon glyphicon-remove pull-right " {{action "editStatusCancel" bubbles=false}}></i>
+            <i class="glyphicon active-icon glyphicon-ok pull-right margin-right-small" {{action "editStatusOk" item bubbles=false}}></i>
+        {{else}}
+            <i class="glyphicon active-icon glyphicon-pencil pull-right" {{action "editStatus" bubbles=false}}></i>
+        {{/if}}
+    {{/if}}
+
+    {{#if item.badge}}<span class="badge pull-right">{{item.badge}}</span>{{/if}}
+
+
+    {{#if isLoggedUser}}
+        {{#if item.editingStatus}}
+            <div {{action bubbles=false}}>
+                {{input size="14" class="form-control" value=item.status}}
+            </div>
+        {{/if}}
+    {{/if}}
+    {{!-- <small>({{_subscription}}) {{onlineStatus}}</small> --}}
+    <div class="pull-right">
+    {{#if item.displayAcceptDeny}}
+        <a class="small" {{action "acceptSubscribeRequest" item bubbles=false}}>[accept]</a>
+        <a class="small" {{action "denySubscribeRequest" item bubbles=false}}>[deny]</a>
+    {{/if}}
+    </div>
+</li>

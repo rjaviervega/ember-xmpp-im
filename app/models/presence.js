@@ -71,7 +71,7 @@ export default DS.Model.extend({
 
     isTo: Ember.computed.equal('connectionType', 'to'),
 
-    displayAcceptDeny: Ember.computed.any('isSubscribe', 'isTo'),
+    displayAcceptDeny: Ember.computed.or('isSubscribe', 'isTo'),
 
     connectionType: function() {
         if (this.get('_subscription') === 'to') {

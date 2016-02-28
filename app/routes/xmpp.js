@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
 	model: function() {
-		return this.store.all('presence');
+		return this.store.peekAll('presence');
 	},
 
     setupController: function(controller, model) {

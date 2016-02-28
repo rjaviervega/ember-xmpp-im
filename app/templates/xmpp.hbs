@@ -24,9 +24,9 @@
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                                         {{#unless isConnected}}
-                                            {{#bs-button clicked="connect" type="primary"}}Connect{{/bs-button}}
+                                            <button {{action "connect"}} type="primary">Connect</button>
                                         {{else}}
-                                            {{#bs-button clicked="disconnect" type="danger" }}Disconnect{{/bs-button}}
+                                            <button {{action "disconnect"}} type="danger">Disconnect</button>
                                         {{/unless}}
                     </div>
                   </div>

@@ -37,6 +37,8 @@
 
 .list-group li {
     cursor: pointer !important;
+    height: 40px;
+    padding: 10px;
 }
 
 .chat-window {
